@@ -1,0 +1,162 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile document",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string", "enum": ["customer", "admin"] },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Admin": {
+      "title": "Admin",
+      "description": "Admin authorization entry",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "role": { "type": "string" },
+        "addedAt": { "type": "string" }
+      },
+      "required": ["email", "role"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Luxury handbag product with color variations and inventory",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 150 },
+        "slug": { "type": "string", "maxLength": 150 },
+        "description": { "type": "string", "maxLength": 3000 },
+        "shortDescription": { "type": "string", "maxLength": 500 },
+        "price": { "type": "number" },
+        "salePrice": { "type": "number" },
+        "categoryId": { "type": "string" },
+        "categoryName": { "type": "string" },
+        "isFeatured": { "type": "boolean" },
+        "isBestseller": { "type": "boolean" },
+        "isNewArrival": { "type": "boolean" },
+        "active": { "type": "boolean" },
+        "rating": { "type": "number" },
+        "reviewsCount": { "type": "number" },
+        "material": { "type": "string" },
+        "dimensions": { "type": "string" },
+        "variations": { "type": "array" },
+        "defaultColorIndex": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["name", "price", "categoryId", "active", "variations"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "Handbag category classification",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "slug": { "type": "string", "maxLength": 100 },
+        "description": { "type": "string", "maxLength": 500 },
+        "image": { "type": "string" },
+        "order": { "type": "number" },
+        "active": { "type": "boolean" }
+      },
+      "required": ["name", "slug", "active"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer purchase order with line items and fulfillment status",
+      "type": "object",
+      "properties": {
+        "orderNumber": { "type": "string", "maxLength": 64 },
+        "customerId": { "type": "string" },
+        "customerName": { "type": "string", "maxLength": 150 },
+        "customerEmail": { "type": "string", "maxLength": 150 },
+        "customerPhone": { "type": "string", "maxLength": 50 },
+        "shippingAddress": { "type": "object" },
+        "items": { "type": "array" },
+        "subtotal": { "type": "number" },
+        "discount": { "type": "number" },
+        "shippingFee": { "type": "number" },
+        "totalAmount": { "type": "number" },
+        "paymentMethod": { "type": "string", "enum": ["cod", "razorpay_online", "card_demo"] },
+        "paymentStatus": { "type": "string", "enum": ["pending", "paid", "failed", "cod_pending"] },
+        "paymentId": { "type": "string" },
+        "orderStatus": { "type": "string", "enum": ["Pending", "Confirmed", "Processing", "Shipped", "Delivered", "Cancelled"] },
+        "trackingNumber": { "type": "string" },
+        "notes": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["orderNumber", "customerName", "customerEmail", "customerPhone", "items", "totalAmount", "orderStatus", "paymentMethod"]
+    },
+    "StoreSettings": {
+      "title": "StoreSettings",
+      "description": "Global storefront configurations and promotional banners",
+      "type": "object",
+      "properties": {
+        "storeName": { "type": "string", "maxLength": 100 },
+        "contactEmail": { "type": "string", "maxLength": 100 },
+        "contactPhone": { "type": "string", "maxLength": 50 },
+        "currency": { "type": "string" },
+        "currencySymbol": { "type": "string" },
+        "freeShippingThreshold": { "type": "number" },
+        "standardShippingFee": { "type": "number" },
+        "announcementBarText": { "type": "string" },
+        "announcementBarActive": { "type": "boolean" },
+        "bannerTitle": { "type": "string" },
+        "bannerSubtitle": { "type": "string" },
+        "bannerImageUrl": { "type": "string" },
+        "testPaymentMode": { "type": "boolean" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["storeName", "currency", "currencySymbol"]
+    },
+    "Cart": {
+      "title": "Cart",
+      "description": "User persistent shopping cart",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "items": { "type": "array" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId", "items"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles and credentials"
+    },
+    "/admins/{adminId}": {
+      "schema": "Admin",
+      "description": "Administrators lookup collection for RBAC"
+    },
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Luxury handbag catalog with color variations"
+    },
+    "/categories/{categoryId}": {
+      "schema": "Category",
+      "description": "Handbag categories"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "E-commerce orders placed by customers or guests"
+    },
+    "/storeSettings/{settingId}": {
+      "schema": "StoreSettings",
+      "description": "Global store settings and banner configuration"
+    },
+    "/carts/{userId}": {
+      "schema": "Cart",
+      "description": "Customer shopping carts"
+    }
+  }
+}

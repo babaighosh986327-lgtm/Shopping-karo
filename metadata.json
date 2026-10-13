@@ -1,0 +1,6 @@
+{
+  "name": "LUXEBAG | Premium Women's Luxury Handbags",
+  "description": "Exclusive collection of handcrafted luxury handbags, shoulder bags, totes, and crossbodies with custom color variations and real-time order tracking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

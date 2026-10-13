@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  h1, h2, h3, .font-serif, .font-display {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F2EB;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4AF37;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B38E46;
+}
+
+/* Login and Registration */
+.auth-page {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(20, 20, 20, 0.65);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+.auth-page.active {
+  display: flex;
+}
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: #FAF8F5;
+  padding: 32px;
+  border: 1px solid #E8DFC9;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(23, 25, 35, 0.18);
+  position: relative;
+}
+.auth-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.auth-card h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 29px;
+  margin: 20px 0 6px;
+  color: #141414;
+  font-weight: 700;
+}
+.auth-subtitle {
+  color: #747989;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.auth-field {
+  margin-top: 18px;
+}
+.auth-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #4A4238;
+}
+.auth-field input {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #E2E4EC;
+  border-radius: 11px;
+  outline: none;
+  background: #FFFFFF;
+  font-size: 13px;
+  color: #1C1917;
+  transition: border-color 0.2s;
+}
+.auth-field input:focus {
+  border-color: #D4AF37;
+}
+.password-wrap {
+  display: flex;
+  gap: 7px;
+}
+.password-wrap input {
+  flex: 1;
+  min-width: 0;
+}
+.password-wrap button {
+  border: 1px solid #E2E4EC;
+  background: white;
+  padding: 0 14px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6B6155;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.password-wrap button:hover {
+  background: #F4ECE1;
+  color: #141414;
+}
+.auth-submit {
+  width: 100%;
+  margin-top: 22px;
+}
+.auth-switch {
+  text-align: center;
+  font-size: 14px;
+  color: #747989;
+  margin-top: 20px;
+}
+.auth-link {
+  color: #B38E46;
+  font-weight: 700;
+  border: 0;
+  background: none;
+  padding: 4px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.auth-link:hover {
+  color: #856514;
+}
+.auth-message {
+  font-size: 13px;
+  padding: 11px;
+  border-radius: 10px;
+  margin-top: 14px;
+  display: none;
+  line-height: 1.5;
+}
+.auth-message.show {
+  display: block;
+}
+.auth-message.error {
+  background: #fff0f0;
+  color: #bd3030;
+  border: 1px solid #fed7d7;
+}
+.auth-message.success {
+  background: #eafaf0;
+  color: #177344;
+  border: 1px solid #c6f6d5;
+}
+.auth-user {
+  font-size: 13px;
+  color: #B38E46;
+  font-weight: 700;
+}
